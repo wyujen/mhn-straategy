@@ -2,6 +2,8 @@ import { RelationshipFromJDL } from 'mycena-store';
 import * as fromUser from './user/user.reducer';
 import * as fromGroup from './group/group.reducer';
 import * as fromArea from './area/area.reducer'
+import * as fromDragon from './dragon/dragon.reducer'
+
 
 
 
@@ -13,19 +15,21 @@ export interface CommonStoreState {
   user: fromUser.UserState;
   group: fromGroup.GroupState;
   area: fromArea.AreaState;
-
+  dragon: fromDragon.DragonState;
 }
 
 export const CommonReducers = {
   user: fromUser.reducer,
   group: fromGroup.reducer,
-  area: fromArea.reducer
+  area: fromArea.reducer,
+  dragon: fromDragon.reducer,
 };
 
 export const CommonFeatureKeys = {
   user: fromUser.FeatureKey,
   group: fromGroup.FeatureKey,
   area: fromArea.FeatureKey,
+  dragon: fromDragon.FeatureKey
 
 };
 

@@ -11,6 +11,6 @@ export class AppComponent {
   title = 'mhn-strategy';
   constructor(){
     Store.subscribe((e)=> console.log(e))
-    Store.dispatch(new UpsertMany('area',[{id:'01', name:'test'}]))
+    Store.dispatch(new UpsertMany('dragon',[{id:'01', name:'test'}]))
   }
 }
