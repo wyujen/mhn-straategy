@@ -4,7 +4,7 @@ import * as fromGroup from './group/group.reducer';
 
 
 export function taipowerStore(): string {
-  return 'taipower-store';
+  return 'mhn-store';
 }
 
 export interface CommonStoreState {

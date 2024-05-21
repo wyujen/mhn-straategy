@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { Store } from 'libs/mhn-store/src/lib/frontend';
+import { UpsertMany } from 'mycena-store';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mhn-strategy';
+  constructor(){
+    Store.subscribe((e)=> console.log(e))
+    Store.dispatch(new UpsertMany('user',[{id:'01', name:'test'}]))
+  }
 }
