@@ -2,6 +2,7 @@
 
 export interface IDragonProperty {
   id: string;
-  areaId: string;
+  isWeek: boolean;
   dragonId: string;
+  propertyId: string;
 }

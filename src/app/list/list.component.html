@@ -1,0 +1,28 @@
+<a routerLink="/home">home</a>
+<p>list works!</p>
+<!-- <button (click)="test()">test</button><br /> -->
+<button *ngFor="let page of pageList" (click)="setPage(page)"> {{page}}</button>
+<div [ngSwitch]="currentPage">
+    <div *ngSwitchCase="'area'">
+        <li *ngFor="let area of areaList()">{{ area.name }}
+            <button (click)="goToDetail(area.id)"> Detail</button>
+        </li>
+    </div>
+    <div *ngSwitchCase="'property'">
+        <li *ngFor="let property of propertyList()">{{ property.name }}
+            <button (click)="goToDetail(property.id)">
+                Detail</button>
+        </li>
+
+    </div>
+    <div *ngSwitchCase="'dragon'">
+        <li *ngFor="let dragon of dragonList()">{{ dragon.name }}
+            <button (click)="goToDetail(dragon.id)">
+                Detail</button>
+        </li>
+
+    </div>
+    <div *ngSwitchDefault>
+        <p>This is the default case.</p>
+    </div>
+</div>

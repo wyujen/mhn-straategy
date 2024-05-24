@@ -9,6 +9,7 @@ import { selectRelationUserMapList } from 'libs/mhn-store/src/lib/user/user.fron
 import { UpsertMany } from 'mycena-store';
 import { debounceTime } from 'rxjs';
 import { DataServiceService } from './data/data-service.service';
+import { selectRelationPropertyMapList } from 'libs/mhn-store/src/lib/property/property.frontend.selectors';
 
 @Component({
   selector: 'app-root',
@@ -20,18 +21,10 @@ export class AppComponent {
   constructor(
     private dataS : DataServiceService
   ){
-    // Store.subscribe((e)=> console.log(e))
-    // Store.dispatch(new UpsertMany('user',[{id:'u01', name:'utest', groupId:'g01'}]))
-    // Store.dispatch(new UpsertMany('group',[{id:'g01', name:'gtest'}]))
-
-
-    // Store.dispatch(new UpsertMany('dragon',[{id:'d01', name:'dtest'}]))
-    // Store.dispatch(new UpsertMany('area',[{id:'a01', name:'atest'}]))
-    // Store.dispatch(new UpsertMany('dragonArea',[{id:'d01a01', areaId:'a01',dragonId:'d01'}]))
-    // Store.dispatch(new UpsertMany('area',[{id:'a02', name:'atest2', dragonId:'d01'}]))
+    
     this.dataS.loadData()
 
-    // selectRelationAreaMapList.subscribe((data)=> console.log('aaaaa',data))
+    selectRelationPropertyMapList.subscribe((data)=> console.log('aaaaa',data))
     // selectRelationDragonAreas.subscribe((data)=> console.log('bbbbb',data))
   }
 }
