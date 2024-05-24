@@ -3,7 +3,11 @@ import * as fromUser from './user/user.reducer';
 import * as fromGroup from './group/group.reducer';
 import * as fromArea from './area/area.reducer'
 import * as fromDragon from './dragon/dragon.reducer'
-import * as fromDragon_Area from './dragon_area/dragon_area.reducer'
+import * as fromDragonArea from './dragon-area/dragon-area.reducer'
+import * as fromProperty from './property/property.reducer'
+import * as fromDragonProperty from './dragon-property/dragon-property.reducer'
+
+
 
 
 
@@ -18,7 +22,10 @@ export interface CommonStoreState {
   group: fromGroup.GroupState;
   area: fromArea.AreaState;
   dragon: fromDragon.DragonState;
-  dragon_area: fromDragon_Area.Dragon_AreaState;
+  dragonArea: fromDragonArea.DragonAreaState;
+  property: fromProperty.PropertyState;
+  dragonProperty: fromDragonProperty.DragonPropertyState;
+
 }
 
 export const CommonReducers = {
@@ -26,8 +33,11 @@ export const CommonReducers = {
   group: fromGroup.reducer,
   area: fromArea.reducer,
   dragon: fromDragon.reducer,
+  dragonArea: fromDragonArea.reducer,
+  property: fromProperty.reducer,
+  dragonProperty: fromDragonProperty.reducer
 
-  dragon_area: fromDragon_Area.reducer
+
 };
 
 export const CommonFeatureKeys = {
@@ -35,19 +45,22 @@ export const CommonFeatureKeys = {
   group: fromGroup.FeatureKey,
   area: fromArea.FeatureKey,
   dragon: fromDragon.FeatureKey,
-
-  dragon_area: fromDragon_Area.FeatureKey
-
+  dragonArea: fromDragonArea.FeatureKey,
+  property: fromProperty.FeatureKey,
+  dragonProperty: fromDragonProperty.FeatureKey
 };
 
 export const CommonRelationshipByType: RelationshipFromJDL = {
   OneToOne: new Set([
+    
   ]),
   OneToMany: new Set([
-    'Group{userMap(groupId)} to User{group(id)}',
-    'Area{dragonMap(areaId)} to Dragon{Area(id)}',
-    'Dragon{areaMap(dragonId)} to Area{Dragon(id)}',
-    
+    'Group{aaaaauserMap(groupId)} to User{aaaaagroup(id)}',
+    'Area{toDragonMap(areaId)} to DragonArea{area(id)}',
+    'Dragon{toAreaMap(dragonId)} to DragonArea{dragon(id)}',
+
+    'Property{toDragonMap(propertyId)} to DragonProperty{property(id)}',
+    'Dragon{toPropertyMap(dragonId)} to DragonProperty{dragon(id)}',
   ]),
   ManyToMany: new Set([
     
