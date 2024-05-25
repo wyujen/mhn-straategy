@@ -1,18 +1,22 @@
-<p>detail works!</p>
-<!-- <button (click)="get()">test</button><br /> -->
+<p>edit works!</p>
+
 <a routerLink="/list">List</a>
 
 <div *ngIf="isLoading">載入中......</div>
 
 <div *ngIf="!isLoading">
-    <button (click)="back()">back</button>
-    <button (click)="goToEdit()">Edit</button>
     <div [ngSwitch]="page">
         <div *ngSwitchCase="'area'">
             <div>
-                <h2>區域 detail</h2>
+                <h3>區域 Edit</h3>
                 <li>id : {{currentDetail()?.id}}</li>
-                <li>name : {{currentDetail()?.name}}</li>
+                <form [formGroup]="baseEditForm">
+                    <li>
+                        <label>name : </label>
+                        <input type='text' formControlName="name" />
+                    </li>
+                </form>
+                <!-- <li>name : {{currentDetail()?.name}}</li> -->
                 <h3>出沒龍種</h3>
                 <div *ngFor="let toDragon of (currentDetail()?._toDragonMap | mapToArray) ">
                     <li>
@@ -23,9 +27,15 @@
             </div>
         </div>
         <div *ngSwitchCase="'property'">
-            <h2>屬性 detail</h2>
+            <h2>屬性 Edit</h2>
             <li>id : {{currentDetail()?.id}}</li>
-            <li>name : {{currentDetail()?.name}}</li>
+
+            <form [formGroup]="baseEditForm">
+                <li>
+                    <label>name : </label>
+                    <input type='text' formControlName="name" />
+                </li>
+            </form>
             <h3>相關龍種</h3>
             <div *ngFor="let toDragon of (currentDetail()?._toDragonMap | mapToArray) ">
                 <li>
@@ -37,9 +47,14 @@
             </div>
         </div>
         <div *ngSwitchCase="'dragon'">
-            <h2>龍 detail</h2>
+            <h3>龍 Edit</h3>
             <li>id : {{currentDetail()?.id}}</li>
-            <li>name : {{currentDetail()?.name}}</li>
+            <form [formGroup]="baseEditForm">
+                <li>
+                    <label>name : </label>
+                    <input type='text' formControlName="name" />
+                </li>
+            </form>
             <h3>相關屬性</h3>
             <div *ngFor="let toProperty of (currentDetail()?._toPropertyMap | mapToArray) ">
                 <li>
@@ -62,5 +77,6 @@
             <p>This is the default case.</p>
         </div>
     </div>
-
+    <button (click)="save()" [disabled]="baseEditForm.invalid">儲存</button>
+    <button (click)="back()">取消</button>
 </div>

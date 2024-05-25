@@ -24,7 +24,7 @@ export class AppComponent {
     
     this.dataS.loadData()
 
-    selectRelationPropertyMapList.subscribe((data)=> console.log('aaaaa',data))
+    // selectRelationPropertyMapList.subscribe((data)=> console.log('aaaaa',data))
     // selectRelationDragonAreas.subscribe((data)=> console.log('bbbbb',data))
   }
 }

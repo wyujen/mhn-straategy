@@ -7,7 +7,11 @@ import { selectRelationPropertys } from 'libs/mhn-store/src/lib/property/propert
 import { selectRelationDragons } from 'libs/mhn-store/src/lib/dragon/dragon.frontend.selectors';
 import { Router } from '@angular/router';
 
-type IPageCase = '' | 'area' | 'property' | 'dragon';
+export type IPageCase = 
+| '' 
+| 'area' 
+| 'property' 
+| 'dragon';
 
 @Component({
   selector: 'app-list',
@@ -21,7 +25,7 @@ export class ListComponent implements OnInit {
 
   pageList: IPageCase[] = ['area', 'property', 'dragon']
   currentPage: IPageCase | '' = ''
-  
+
   constructor(
     private router: Router
   ){}

@@ -15,7 +15,7 @@ export class DataServiceService {
   }
 
   loadData() {
-    Store.subscribe((e) => console.log(e))
+    // Store.subscribe((e) => console.log(e))
     Store.dispatch(new UpsertMany('area', originalAreaList))
     Store.dispatch(new UpsertMany('dragon', originalDragonList))
     Store.dispatch(new UpsertMany('dragonArea', originalDragonaAreaList))

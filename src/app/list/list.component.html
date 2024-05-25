@@ -2,25 +2,25 @@
 <p>list works!</p>
 <!-- <button (click)="test()">test</button><br /> -->
 <button *ngFor="let page of pageList" (click)="setPage(page)"> {{page}}</button>
+<br />--------------------------------<br />
 <div [ngSwitch]="currentPage">
     <div *ngSwitchCase="'area'">
-        <li *ngFor="let area of areaList()">{{ area.name }}
-            <button (click)="goToDetail(area.id)"> Detail</button>
+        <li *ngFor="let area of areaList()">
+            <button (click)="goToDetail(area.id)">詳</button>
+            {{ area.name }}
         </li>
     </div>
     <div *ngSwitchCase="'property'">
-        <li *ngFor="let property of propertyList()">{{ property.name }}
-            <button (click)="goToDetail(property.id)">
-                Detail</button>
+        <li *ngFor="let property of propertyList()">
+            <button (click)="goToDetail(property.id)">詳</button>
+            {{ property.name }}
         </li>
-
     </div>
     <div *ngSwitchCase="'dragon'">
-        <li *ngFor="let dragon of dragonList()">{{ dragon.name }}
-            <button (click)="goToDetail(dragon.id)">
-                Detail</button>
+        <li *ngFor="let dragon of dragonList()">
+            <button (click)="goToDetail(dragon.id)">詳</button>
+            {{ dragon.name }}
         </li>
-
     </div>
     <div *ngSwitchDefault>
         <p>This is the default case.</p>

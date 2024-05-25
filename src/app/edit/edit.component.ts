@@ -1,4 +1,4 @@
-import { Component, OnInit, Signal, WritableSignal, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Signal, WritableSignal, effect, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPageCase } from '../list/list.component';
 import { AreaRelation, DragonRelation, PropertyRelation } from 'libs/mhn-store/src/lib/relation.interface';
@@ -6,16 +6,18 @@ import { selectRelationAreaMapList } from 'libs/mhn-store/src/lib/area/area.fron
 import { debounceTime } from 'rxjs';
 import { selectRelationPropertyMapList } from 'libs/mhn-store/src/lib/property/property.frontend.selectors';
 import { selectRelationDragonMapList } from 'libs/mhn-store/src/lib/dragon/dragon.frontend.selectors';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from 'libs/mhn-store/src/lib/frontend';
+import { SetMany } from 'mycena-store';
+
 import { Location } from '@angular/common';
 
-// export type DetailVM = | AreaRelation | PropertyRelation | DragonRelation | null;
-
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class DetailComponent implements OnInit {
+export class EditComponent {
   page: IPageCase = '';
   id: string = '';
 
@@ -23,11 +25,30 @@ export class DetailComponent implements OnInit {
 
   currentDetail: WritableSignal<any> = signal<any>(null);
 
+  baseEditForm = this.fb.group({
+    name: [null, Validators.required]
+  })
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    protected fb: FormBuilder,
+    private cd: ChangeDetectorRef,
     private location: Location
-  ) { }
+
+  ) {
+    effect(() => {
+      const detail = this.currentDetail();
+      console.log('detail', detail)
+      if (detail) {
+        console.log('go set', detail.name)
+        this.baseEditForm.patchValue({
+          name: detail.name
+        });
+        this.cd.detectChanges()
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -73,8 +94,11 @@ export class DetailComponent implements OnInit {
     this.currentDetail = signal<any>(null)
     this.router.navigate(['/detail', pageName, id]);
   }
-  goToEdit() {
-    this.router.navigate(['/edit', this.page, this.id]);
+
+  save() {
+    const formValue = this.baseEditForm.getRawValue()
+    Store.dispatch(new SetMany(this.page, [{ id: this.id, name: formValue.name }]))
+    this.location.back()
   }
   back() {
     this.location.back()
