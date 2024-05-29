@@ -42,13 +42,13 @@ export interface DragonRelation extends DragonEntity, IDragon {
 }
 export interface DragonAreaRelation extends DragonAreaEntity, IDragonArea {
   _area: AreaRelation,
-  _draon: DragonRelation
+  _dragon: DragonRelation
 }
 export interface PropertyRelation extends PropertyEntity, IProperty {
-  _draon: DragonRelation
+  _dragon: DragonRelation
 }
 
 export interface DragonPropertyRelation extends DragonPropertyEntity, IDragonProperty {
-  _draon: DragonRelation
+  _dragon: DragonRelation
   _property: PropertyRelation
 }

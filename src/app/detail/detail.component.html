@@ -17,7 +17,7 @@
                 <div *ngFor="let toDragon of (currentDetail()?._toDragonMap | mapToArray) ">
                     <li>
                         <button (click)="goToDetail('dragon', toDragon._dragon.id)">詳</button>
-                        {{toDragon._dragon.name}}
+                        {{toDragon?._dragon?.name}}
                     </li>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <button (click)="goToDetail('dragon', toDragon._dragon.id)">詳</button>
                     <label *ngIf="toDragon.isWeek" style="color: blue;">弱屬</label>
                     <label *ngIf="!toDragon.isWeek" style="color: red;">攻屬</label>
-                    {{toDragon._dragon.name}}
+                    {{toDragon?._dragon?.name}}
                 </li>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     <button (click)="goToDetail('property', toProperty._property.id)">詳</button>
                     <label *ngIf="toProperty.isWeek" style="color: blue;">弱屬</label>
                     <label *ngIf="!toProperty.isWeek" style="color: red;">攻屬</label>
-                    {{toProperty._property.name}}
+                    {{toProperty?._property?.name}}
                 </li>
             </div>
             <h3>出沒地帶</h3>
@@ -56,7 +56,6 @@
                     {{toArea._area.name}}
                 </li>
             </div>
-
         </div>
         <div *ngSwitchDefault>
             <p>This is the default case.</p>

@@ -1,14 +1,14 @@
-import { ChangeDetectorRef, Component, OnInit, Signal, WritableSignal, effect, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit, Signal, WritableSignal, computed, effect, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPageCase } from '../list/list.component';
-import { AreaRelation, DragonRelation, PropertyRelation } from 'libs/mhn-store/src/lib/relation.interface';
+import { AreaRelation, DragonAreaRelation, DragonRelation, PropertyRelation } from 'libs/mhn-store/src/lib/relation.interface';
 import { selectRelationAreaMapList } from 'libs/mhn-store/src/lib/area/area.frontend.selectors';
 import { debounceTime } from 'rxjs';
 import { selectRelationPropertyMapList } from 'libs/mhn-store/src/lib/property/property.frontend.selectors';
 import { selectRelationDragonMapList } from 'libs/mhn-store/src/lib/dragon/dragon.frontend.selectors';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from 'libs/mhn-store/src/lib/frontend';
-import { SetMany } from 'mycena-store';
+import { RemoveMany, SetMany } from 'mycena-store';
 
 import { Location } from '@angular/common';
 
@@ -25,16 +25,28 @@ export class EditComponent {
 
   currentDetail: WritableSignal<any> = signal<any>(null);
 
+  toBeDelete: WritableSignal<any> = signal<any>(null);
+
+  sublayerDragonVM = computed<DragonAreaRelation[]>(() => {
+    if (this.page == 'area') {
+      const value = this.currentDetail()._toDragonMap
+      console.log('aaaaa', value)
+      return Object.values(value).map(key => (key as DragonAreaRelation));
+    } else {
+      return []
+    }
+  })
+
   baseEditForm = this.fb.group({
-    name: [null, Validators.required]
+    name: ['', Validators.required]
   })
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     protected fb: FormBuilder,
-    private cd: ChangeDetectorRef,
-    private location: Location
+    private location: Location,
+    private ngZone: NgZone
 
   ) {
     effect(() => {
@@ -45,7 +57,6 @@ export class EditComponent {
         this.baseEditForm.patchValue({
           name: detail.name
         });
-        this.cd.detectChanges()
       }
     });
   }
@@ -63,22 +74,30 @@ export class EditComponent {
     if (this.page == 'area') {
       selectRelationAreaMapList.pipe(debounceTime(1000)).subscribe(
         (data) => {
-          this.currentDetail.set(data[this.id])
-          this.isLoading = false
+          this.ngZone.run(() => {
+            this.currentDetail.set(data[this.id])
+            this.isLoading = false
+          })
+
         }
       )
     } else if (this.page == 'dragon') {
       selectRelationDragonMapList.pipe(debounceTime(1000)).subscribe(
         (data) => {
-          this.currentDetail.set(data[this.id])
-          this.isLoading = false
+          this.ngZone.run(() => {
+            this.currentDetail.set(data[this.id])
+            this.isLoading = false
+          })
+
         }
       )
     } else if (this.page == 'property') {
       selectRelationPropertyMapList.pipe(debounceTime(1000)).subscribe(
         (data) => {
-          this.currentDetail.set(data[this.id])
-          this.isLoading = false
+          this.ngZone.run(() => {
+            this.currentDetail.set(data[this.id])
+            this.isLoading = false
+          })
         }
       )
     } else {
@@ -93,6 +112,14 @@ export class EditComponent {
     this.isLoading = true
     this.currentDetail = signal<any>(null)
     this.router.navigate(['/detail', pageName, id]);
+  }
+  deleteRelation(type: string, id: string) {
+    Store.dispatch(new RemoveMany(type, [id]))
+
+    this.loadData()
+  }
+  test(values: any) {
+    console.log('values', values.id)
   }
 
   save() {
