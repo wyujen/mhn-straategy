@@ -13,6 +13,8 @@ import { PropertyEntity } from "./property/property.entity"
 import { IProperty } from "./property/property.model"
 import { IDragonProperty } from "./dragon-property/dragon-property.model"
 import { DragonPropertyEntity } from "./dragon-property/dragon-property.entity"
+import { IEquipageBase } from "./equipage-base/equipage-base.model"
+import { EquipageBaseEntity } from "./equipage-base/equipage-base.entity"
 
 
 
@@ -24,6 +26,7 @@ export type EntityName =
   | 'dragonArea'
   | 'property'
   | 'dragonProperty'
+  | 'equipageBase'
 
 export type UserRelation = UserEntity & IUser
 export type GroupRelation = GroupEntity & IGroup
@@ -38,8 +41,14 @@ export interface AreaRelation extends AreaEntity, IArea {
 }
 export interface DragonRelation extends DragonEntity, IDragon {
   _toAreaMapList: DragonAreaRelation
-
 }
+
+export interface EquipageBaseRelation extends EquipageBaseEntity, IEquipageBase {
+  _dragon:DragonRelation
+  _property: PropertyRelation
+}
+
+
 export interface DragonAreaRelation extends DragonAreaEntity, IDragonArea {
   _area: AreaRelation,
   _dragon: DragonRelation
@@ -52,3 +61,5 @@ export interface DragonPropertyRelation extends DragonPropertyEntity, IDragonPro
   _dragon: DragonRelation
   _property: PropertyRelation
 }
+
+

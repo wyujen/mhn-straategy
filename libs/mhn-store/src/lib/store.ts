@@ -6,12 +6,7 @@ import * as fromDragon from './dragon/dragon.reducer'
 import * as fromDragonArea from './dragon-area/dragon-area.reducer'
 import * as fromProperty from './property/property.reducer'
 import * as fromDragonProperty from './dragon-property/dragon-property.reducer'
-
-
-
-
-
-
+import * as fromEquipageBase from './equipage-base/equipage-base.reducer'
 
 export function taipowerStore(): string {
   return 'mhn-store';
@@ -25,6 +20,7 @@ export interface CommonStoreState {
   dragonArea: fromDragonArea.DragonAreaState;
   property: fromProperty.PropertyState;
   dragonProperty: fromDragonProperty.DragonPropertyState;
+  equipageBase: fromEquipageBase.EquipageBaseState;
 
 }
 
@@ -35,9 +31,8 @@ export const CommonReducers = {
   dragon: fromDragon.reducer,
   dragonArea: fromDragonArea.reducer,
   property: fromProperty.reducer,
-  dragonProperty: fromDragonProperty.reducer
-
-
+  dragonProperty: fromDragonProperty.reducer,
+  equipageBase: fromEquipageBase.reducer
 };
 
 export const CommonFeatureKeys = {
@@ -47,12 +42,14 @@ export const CommonFeatureKeys = {
   dragon: fromDragon.FeatureKey,
   dragonArea: fromDragonArea.FeatureKey,
   property: fromProperty.FeatureKey,
-  dragonProperty: fromDragonProperty.FeatureKey
+  dragonProperty: fromDragonProperty.FeatureKey,
+  equipageBase: fromEquipageBase.FeatureKey
 };
 
 export const CommonRelationshipByType: RelationshipFromJDL = {
   OneToOne: new Set([
-    
+    'Dragon{equipageBase(dragonId)} to EquipageBase{dragon(id)}',
+    'EquipageBase{dragon(equipageBaseId)} to Dragon{equipageBase(id)}',
   ]),
   OneToMany: new Set([
     'Group{aaaaauserMap(groupId)} to User{aaaaagroup(id)}',
@@ -61,8 +58,9 @@ export const CommonRelationshipByType: RelationshipFromJDL = {
 
     'Property{toDragonMap(propertyId)} to DragonProperty{property(id)}',
     'Dragon{toPropertyMap(dragonId)} to DragonProperty{dragon(id)}',
+    // 'Property{equipageBase(propertyId)} to EquipageBase{property(id)}'
   ]),
   ManyToMany: new Set([
-    
+
   ]),
 };

@@ -1,0 +1,17 @@
+<p>car works!</p>
+<a routerLink="/equipage">equipage search</a><br />
+
+<a routerLink="/home">home</a><br />
+<div *ngIf="currenEquipageList()">
+    <div *ngFor="let equipage of currenEquipageList()">
+        <li>
+            {{equipage.dragon}} {{equipage.equipage}}
+        </li>
+    </div>
+    合計需要
+    <li *ngFor="let manter of sumManterial()">
+        {{manter.name}} {{manter.number}} 個
+    </li>
+    <button (click)="clean()">clean all</button>
+</div>
+<div *ngIf="!currenEquipageList()">無資料</div>

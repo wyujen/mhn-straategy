@@ -6,10 +6,10 @@
 <br />--------------------------------<br />
 <div [ngSwitch]="currentPage">
     <div *ngSwitchCase="'area'">
-        <li *ngFor="let area of areaList()">
+        <!-- <li *ngFor="let area of areaList()">
             <button (click)="goToDetail(area.id)">詳</button>
             {{ area.name }}
-        </li>
+        </li> -->
 
         <div>
             after Search
@@ -20,10 +20,10 @@
         </div>
     </div>
     <div *ngSwitchCase="'property'">
-        <li *ngFor="let property of propertyList()">
+        <!-- <li *ngFor="let property of propertyList()">
             <button (click)="goToDetail(property.id)">詳</button>
             {{ property.name }}
-        </li>
+        </li> -->
 
         <div>
             after Search
@@ -34,10 +34,10 @@
         </div>
     </div>
     <div *ngSwitchCase="'dragon'">
-        <li *ngFor="let dragon of dragonList()">
+        <!-- <li *ngFor="let dragon of dragonList()">
             <button (click)="goToDetail(dragon.id)">詳</button>
             {{ dragon.name }}
-        </li>
+        </li> -->
         <div>
             after search
             <li *ngFor="let data of dragonAfterSearch()">

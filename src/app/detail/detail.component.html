@@ -56,6 +56,12 @@
                     {{toArea._area.name}}
                 </li>
             </div>
+            <h3>可製作武器</h3>
+            <div *ngFor="let weapenName of currentDetail()?._equipageBase?.weaponTypeList">
+                <li>
+                    {{weapenName}}
+                </li>
+            </div>
         </div>
         <div *ngSwitchDefault>
             <p>This is the default case.</p>

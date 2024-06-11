@@ -19,80 +19,104 @@ export const originalAreaList: IArea[] = [
 export const originalDragonList: IDragon[] = [
     {
         id: 'd01',
-        name: '大凶豺龍'
+        name: '大凶豺龍',
+        equipageBaseId: 'd01eb'
     },
     {
         id: 'd02',
-        name: '搔鳥'
+        name: '搔鳥',
+        equipageBaseId: 'd02eb'
     }, {
         id: 'd03',
-        name: '毒妖鳥'
+        name: '毒妖鳥',
+        equipageBaseId: 'd03eb'
     }, {
         id: 'd04',
-        name: '水妖鳥'
+        name: '水妖鳥',
+        equipageBaseId: 'd04eb'
     }, {
         id: 'd05',
-        name: '土砂龍'
+        name: '土砂龍',
+        equipageBaseId: 'd05eb'
     }, {
         id: 'd06',
-        name: '大凶顎龍'
+        name: '大凶顎龍',
+        equipageBaseId: 'd06eb'
     }, {
         id: 'd07',
-        name: '飛雷龍'
+        name: '飛雷龍',
+        equipageBaseId: 'd07eb'
     }, {
         id: 'd08',
-        name: '浮空龍'
+        name: '浮空龍',
+        equipageBaseId: 'd08eb'
     }, {
         id: 'd09',
-        name: '泥魚龍'
+        name: '泥魚龍',
+        equipageBaseId: 'd09eb'
     }, {
         id: 'd10',
-        name: '蠻顎龍'
+        name: '蠻顎龍',
+        equipageBaseId: 'd10eb'
     }, {
         id: 'd11',
-        name: '雌火龍'
+        name: '雌火龍',
+        equipageBaseId: 'd11eb'
     }, {
         id: 'd12',
-        name: '櫻火龍'
+        name: '櫻火龍',
+        equipageBaseId: 'd12eb'
     },
     {
         id: 'd13',
-        name: '風漂龍'
+        name: '風漂龍',
+        equipageBaseId: 'd13eb'
     },
     {
         id: 'd14',
-        name: '角龍'
+        name: '角龍',
+        equipageBaseId: 'd14eb'
     },
     {
         id: 'd15',
-        name: '黑角龍'
+        name: '黑角龍',
+        equipageBaseId: 'd15eb'
     }, {
         id: 'd16',
-        name: '火龍'
+        name: '火龍',
+        equipageBaseId: 'd16eb'
     }, {
         id: 'd17',
-        name: '蒼火龍'
+        name: '蒼火龍',
+        equipageBaseId: 'd17eb'
     }, {
         id: 'd18',
-        name: '骨鎚龍'
+        name: '骨鎚龍',
+        equipageBaseId: 'd18eb'
     }, {
         id: 'd19',
-        name: '猛牛龍'
+        name: '猛牛龍',
+        equipageBaseId: 'd19eb'
     }, {
         id: 'd20',
-        name: '冰牙龍'
+        name: '冰牙龍',
+        equipageBaseId: 'd20eb'
     }, {
         id: 'd21',
-        name: '雷狼龍'
+        name: '雷狼龍',
+        equipageBaseId: 'd21eb'
     }, {
         id: 'd22',
-        name: '眩鳥'
+        name: '眩鳥',
+        equipageBaseId: 'd22eb'
     }, {
         id: 'd23',
-        name: '慘爪龍'
+        name: '慘爪龍',
+        equipageBaseId: 'd23eb'
     }, {
         id: 'd24',
-        name: '恐暴龍'
+        name: '恐暴龍',
+        equipageBaseId: 'd24eb'
     },
     // {
     //     id:'d25',
@@ -122,7 +146,6 @@ export const originalDragonList: IDragon[] = [
     //     id:'d33',
     //     name:''
     // },
-
 ]
 
 export const originalDragonaAreaList: IDragonArea[] = [

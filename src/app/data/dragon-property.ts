@@ -1,13 +1,13 @@
 import { IProperty } from "libs/mhn-store/src/lib/property/property.model"
 import { IDragonProperty } from "libs/mhn-store/src/lib/dragon-property/dragon-property.model"
 
-
+// '片手', '大劍', '大鎚', '太刀', '輕弩', 
+// '弓', '雙刀', '長矛', '斬擊斧'
 export const originalProperty: IProperty[] = [
     {
         id: 'p01',
         name: '火',
-    },
-    {
+    },{
         id: 'p02',
         name: '水',
     }, {

@@ -51,6 +51,7 @@ export class DetailComponent implements OnInit {
         (data) => {
           this.currentDetail.set(data[this.id])
           this.isLoading = false
+          console.log('data', data)
         }
       )
     } else if (this.page == 'property') {

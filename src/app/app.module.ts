@@ -9,6 +9,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { DetailComponent } from './detail/detail.component';
 import { MapToArrayPipe, MapToArrayPurePipe } from './map-to-array.pipe';
 import { EditComponent } from './edit/edit.component';
+import { EquipageComponent } from './equipage/equipage.component';
+import { CarComponent } from './car/car.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { EditComponent } from './edit/edit.component';
     DetailComponent,
     MapToArrayPipe,
     MapToArrayPurePipe,
-    EditComponent
+    EditComponent,
+    EquipageComponent,
+    CarComponent
   ],
   imports: [
     BrowserModule,

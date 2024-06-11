@@ -1,0 +1,28 @@
+<p>equipage works!</p>
+<a routerLink="/home">home</a><br />
+<a routerLink="/car">car</a><br />
+
+<button *ngFor="let dragon of dragonList()" (click)="setCurrentDragon(dragon)">
+    {{ dragon.name }}
+</button><br />
+<label>------------------</label><br />
+<div *ngIf="currenDragon()">
+    <button *ngFor="let armor of armorList()" (click)="setCurrentEquipage(armor)">
+        {{armor}}
+    </button>
+    <button *ngFor="let weapon of currenDragon()?._equipageBase?.weaponTypeList" (click)="setCurrentEquipage(weapon)">
+        {{weapon}}
+    </button>
+</div>
+<label>------------------</label><br>
+
+<label *ngIf="currenDragon()">{{finalEquipage().dragon}}</label>
+<label *ngIf="currenEquipage()">{{finalEquipage().equipage}}</label><br>
+<div *ngIf="currenEquipage()">
+    <label>所需素材</label><br />
+    <label *ngFor="let manital of finalEquipage().materialList">
+        {{manital.name}} {{manital.number}}
+    </label>
+</div>
+
+<button *ngIf="currenDragon() && currenEquipage()" (click)="setCar()">加入</button><br>
